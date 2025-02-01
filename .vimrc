@@ -1,6 +1,6 @@
 syntax on
 :set number
-:set shell=/opt/homebrew/bin/zsh
+:set shell=/usr/local/bin/zsh
 
 let mapleader = " "
 let maplocalleader = "\\"
