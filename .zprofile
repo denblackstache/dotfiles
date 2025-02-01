@@ -1,7 +1,11 @@
 ## Paths
+if [ "$(uname -m)" = "arm64" ]; then
+    HOMEBREW_PREFIX="/opt/homebrew"
+else
+    HOMEBREW_PREFIX="/usr/local"
+fi
 
-HOMEBREW_PREFIX=$(brew --prefix)
-
+eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 export PATH="$HOMEBREW_PREFIX/bin:$PATH" 
 
 eval "$(nodenv init - zsh)"
@@ -18,7 +22,5 @@ export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 export PATH="$PATH:/Users/den/Library/Application Support/JetBrains/Toolbox/scripts"
 export PATH="$HOME/.jbang/bin:$PATH"
 
-eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
-
+## Tmux
 [[ $TMUX = "" ]] && export TERM="xterm-256color"
-

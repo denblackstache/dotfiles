@@ -5,7 +5,7 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
 [include]
-      path = ~/.gitconfig_local
+      path = ~/.gitconfig_local # user, etc
 [pull]
 	ff = only
 # [merge]

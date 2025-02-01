@@ -1,5 +1,3 @@
-HOMEBREW_PREFIX=$(brew --prefix)
-
 # Oh My ZSH begin
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -25,7 +23,6 @@ prompt pure
 # Aliases
 alias be='bundle exec'
 alias brew-deps="brew uses --recursive --installed"
-# manage dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' 
 alias cspaste="pbpaste | tr '\n' ',' | sed 's/,$//g'"
 alias gbch="gbump && echo 'Starting to watch PR checks in 10s' && sleep 10 && ghch"
