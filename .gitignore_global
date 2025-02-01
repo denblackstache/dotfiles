@@ -1,0 +1,7 @@
+*.log
+composer.phar
+*.sublime-workspace
+
+.DS_Store
+.idea/
+fixtures/_build
