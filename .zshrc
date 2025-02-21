@@ -4,8 +4,8 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""
 
 # Just remind me to update when it's time
-zstyle ':omz:update' mode reminder 
-zstyle ':omz:update' frequency 14
+zstyle ':omz:update' mode disabled
+#zstyle ':omz:update' frequency 14
 
 # Command execution timestamp format in the history command output.
 HIST_STAMPS="%Y-%m-%d %T"
