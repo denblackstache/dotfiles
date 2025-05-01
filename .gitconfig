@@ -8,12 +8,27 @@
       path = ~/.gitconfig_local # user, etc
 [pull]
 	ff = only
+[merge]
+    tool = intellij
+[mergetool "intellij"]
+    cmd = open -na \"~/Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea\" -W --args merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+    # cmd = '~/Library/Application Support/JetBrains/Toolbox/scripts/idea' merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+    trustExitCode = true
+[mergetool]
+    keepBackup = false
 # [merge]
 #     tool = idea
 # [mergetool "idea"]
-#     cmd = idea1 merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+#     cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
 #     trustExitCode = true
+[diff]
+    tool = intellij
+[difftool "intellij"]
+    cmd = open -na \"~/Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea\" -W --args diff "$LOCAL" "$REMOTE"
+    # cmd = '~/Library/Application Support/JetBrains/Toolbox/scripts/idea' diff "$LOCAL" "$REMOTE"
 # [diff]
-#     tool = idea
+#    tool = idea
 # [difftool "idea"]
-#     cmd = idea1 diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+#    cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[alias]
+    update-root = "!~/.scripts/git-safe-update-root.sh"
