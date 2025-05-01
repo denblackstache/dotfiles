@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+open -na Google\ Chrome --args --user-data-dir=/tmp/temporary-chrome-profile-dir --disable-web-security --ignore-certificate-errors
