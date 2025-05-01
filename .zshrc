@@ -10,7 +10,7 @@ zstyle ':omz:update' mode disabled
 # Command execution timestamp format in the history command output.
 HIST_STAMPS="%Y-%m-%d %T"
 
-plugins=(git)
+plugins=(git fzf ssh-agent docker docker-compose aws colored-man-pages you-should-use)
 
 source $ZSH/oh-my-zsh.sh
 # Oh My ZSH end
