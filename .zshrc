@@ -28,6 +28,7 @@ alias cspaste="pbpaste | tr '\n' ',' | sed 's/,$//g'"
 alias gbch="gbump && echo 'Starting to watch PR checks in 10s' && sleep 10 && ghch"
 alias gbump="git commit -m 'Bump' --allow-empty && git push"
 alias ghch="gh pr checks --watch"
+alias ghchi='nohup ~/.scripts/notification-github-pr-checks.sh > /dev/null 2>&1 &'
 alias grp='git rev-parse HEAD'
 alias grpcp='git rev-parse HEAD | xargs echo -n | pbcopy'
 alias http='xh'
