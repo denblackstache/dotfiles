@@ -8,7 +8,7 @@ case $OSTYPE in
 darwin*)
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  yes | brew install zsh git tmux wget ripgrep fzf fd btop jq yq
+  yes | brew install zsh git tmux wget ripgrep fzf fd bat delta eza zoxide btop jq yq
   yes | brew install gh xh viddy shellcheck scc tlrc k6 vacuum
   yes | brew install rbenv nodenv openjdk@21
   yes | brew install --cask kitty
