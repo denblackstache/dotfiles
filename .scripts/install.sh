@@ -10,7 +10,7 @@ darwin*)
 
   yes | brew install zsh git tmux wget ripgrep fzf fd bat delta eza zoxide btop jq yq
   yes | brew install gh xh viddy shellcheck scc tlrc k6 vacuum
-  yes | brew install rbenv nodenv openjdk@21
+  yes | brew install rbenv nodenv temurin@21
   yes | brew install --cask kitty
   ;;
 esac
