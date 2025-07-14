@@ -8,16 +8,26 @@ case $OSTYPE in
 darwin*)
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  yes | brew install zsh git tmux wget ripgrep fzf fd bat delta eza zoxide btop jq yq
-  yes | brew install gh xh viddy shellcheck scc tlrc k6 vacuum
-  yes | brew install rbenv nodenv temurin@21
-  yes | brew install --cask kitty
+  yes | brew install zsh git tmux wget ripgrep fzf fd bat git-delta eza zoxide btop jq yq
+  yes | brew install gh xh viddy shellcheck scc tlrc k6 vacuum sqlfluff fastfetch git-standup
+  yes | brew install rbenv nodenv temurin@21 mise
+  yes | brew install --cask kitty aerospace
   ;;
 esac
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i'.bak' 's/^plugins=.*$/plugins=(git fzf ssh-agent rbenv nodenv docker docker-compose aws you-should-use colored-man-pages)/' ~/.zshrc
+sed -i'.bak' 's/^plugins=.*$/plugins=(git fzf docker docker-compose aws you-should-use colored-man-pages zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
 
-YOU_SHOULD_USE_REPO=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$YOU_SHOULD_USE_REPO" || true
-git -C "$YOU_SHOULD_USE_REPO" pull
+ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/plugins/you-should-use" || \
+  git -C "$ZSH_CUSTOM/plugins/you-should-use" pull
+
+git clone https://github.com/zsh-users/zsh-history-substring-search.git "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || \
+  git -C "$ZSH_CUSTOM/plugins/zsh-history-substring-search" pull
+
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || \
+  git -C "$ZSH_CUSTOM/plugins/zsh-autosuggestions" pull
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || \
+  git -C "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" pull
