@@ -7,11 +7,12 @@ cd "$SCRIPT_DIR/.."
 case $OSTYPE in
 darwin*)
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
+  
+  yes | brew tap FelixKratz/formulae
   yes | brew install zsh git tmux wget ripgrep fzf fd bat git-delta eza zoxide btop jq yq
-  yes | brew install gh xh viddy shellcheck scc tlrc k6 vacuum sqlfluff fastfetch git-standup
+  yes | brew install gh xh viddy shellcheck scc tlrc k6 daveshanley/vacuum/vacuum sqlfluff fastfetch git-standup
   yes | brew install rbenv nodenv temurin@21 mise
-  yes | brew install --cask kitty aerospace
+  yes | brew install --cask kitty nikitabobko/tap/aerospace borders
   ;;
 esac
 
