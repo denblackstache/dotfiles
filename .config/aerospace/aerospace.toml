@@ -8,7 +8,9 @@ after-login-command = []
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 # after-startup-command = []
 after-startup-command = [
-  'exec-and-forget borders active_color=0xffe2e2e3 inactive_color=0xff414550 width=3.0 style=round order=above'
+  #'exec-and-forget borders active_color=0xff6aa5e9 inactive_color=0xffdfe6ee width=3.0 style=round order=above' # light, blue accent
+  #'exec-and-forget borders active_color=0xfff2c94c inactive_color=0xfff3f3f3 width=3.0 style=round order=above' # light, yellow accent
+  'exec-and-forget borders active_color=0xffe2e2e3 inactive_color=0xff414550 width=3.0 style=round order=above' # dark
 ]
 
 # Start AeroSpace at login
