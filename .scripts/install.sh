@@ -1,34 +1,46 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$(dirname "$0")"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR/.."
+
+clone_or_pull() {
+  local repo_url=$1
+  local dest_dir=$2
+
+  [ -d "$dest_dir/.git" ] && git -C "$dest_dir" pull || git clone "$repo_url" "$dest_dir"
+}
 
 case $OSTYPE in
 darwin*)
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  command -v brew >/dev/null 2>&1 || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew update
   
-  yes | brew tap FelixKratz/formulae
-  yes | brew install zsh git tmux wget ripgrep fzf fd bat git-delta eza zoxide btop jq yq
-  yes | brew install gh xh viddy shellcheck scc tlrc k6 daveshanley/vacuum/vacuum sqlfluff fastfetch git-standup
-  yes | brew install rbenv nodenv temurin@21 mise
-  yes | brew install --cask kitty nikitabobko/tap/aerospace borders
+  brew tap | grep --fixed-strings --ignore-case --quiet "^FelixKratz/formulae\$" || brew tap FelixKratz/formulae
+
+  brew install \
+    zsh git tmux wget ripgrep fzf fd bat git-delta eza zoxide btop jq yq \
+    gh xh viddy shellcheck scc tlrc k6 daveshanley/vacuum/vacuum sqlfluff fastfetch git-standup \
+    rbenv nodenv temurin@21 mise \
+    borders
+
+  for cask in kitty nikitabobko/tap/aerospace; do
+    brew list --cask "$cask" &>/dev/null || brew install --cask "$cask"
+  done
   ;;
 esac
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i'.bak' 's/^plugins=.*$/plugins=(git fzf docker docker-compose aws you-should-use colored-man-pages zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting)/' ~/.zshrc
+[ -d "$HOME/.oh-my-zsh" ] || sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+[ -f "$HOME/.oh-my-zsh/tools/upgrade.sh" ] && bash "$HOME/.oh-my-zsh/tools/upgrade.sh"
 
 ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/plugins/you-should-use" || \
-  git -C "$ZSH_CUSTOM/plugins/you-should-use" pull
+clone_or_pull https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/plugins/you-should-use"
+clone_or_pull https://github.com/zsh-users/zsh-history-substring-search.git "$ZSH_CUSTOM/plugins/zsh-history-substring-search"
+clone_or_pull https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+clone_or_pull https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 
-git clone https://github.com/zsh-users/zsh-history-substring-search.git "$ZSH_CUSTOM/plugins/zsh-history-substring-search" || \
-  git -C "$ZSH_CUSTOM/plugins/zsh-history-substring-search" pull
-
-git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions" || \
-  git -C "$ZSH_CUSTOM/plugins/zsh-autosuggestions" pull
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" || \
-  git -C "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" pull
+PLUGIN_LINE='plugins=(git fzf docker docker-compose aws you-should-use colored-man-pages zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting)'
+if ! grep --fixed-strings --quiet "$PLUGIN_LINE" ~/.zshrc; then
+  sed --in-place='.bak' "s/^plugins=.*/$PLUGIN_LINE/" ~/.zshrc
+fi
