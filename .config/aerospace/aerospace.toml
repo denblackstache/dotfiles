@@ -181,10 +181,13 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'org.mozilla.firefox'
     run = 'move-node-to-workspace 1'
 [[on-window-detected]]
+    if.app-id = 'com.apple.Safari'
+    run = 'move-node-to-workspace 1'
+[[on-window-detected]]
     if.app-id = 'com.google.Chrome'
     run = 'move-node-to-workspace 1'
 [[on-window-detected]]
-    if.app-id = 'org.keepassxc.keepassxc'
+    if.app-id = 'com.apple.mail'
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
@@ -207,6 +210,9 @@ automatically-unhide-macos-hidden-apps = false
     if.app-id = 'net.kovidgoyal.kitty'
     run = 'move-node-to-workspace 3'
 [[on-window-detected]]
+    if.app-id = 'com.googlecode.iterm2'
+    run = 'move-node-to-workspace 3'
+[[on-window-detected]]
     if.app-id = 'com.sublimetext.4'
     run = 'move-node-to-workspace 3'
 [[on-window-detected]]
@@ -215,6 +221,9 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
     if.app-id = 'md.obsidian'
+    run = 'move-node-to-workspace 4'
+[[on-window-detected]]
+    if.app-id = 'com.apple.Notes'
     run = 'move-node-to-workspace 4'
 
 
