@@ -25,6 +25,7 @@ alias be='bundle exec'
 alias brew-deps="brew uses --recursive --installed"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME' 
 alias cspaste="pbpaste | tr '\n' ',' | sed 's/,$//g'"
+alias dedoc-fzf="$HOME/.scripts/dedoc-fzf.sh"
 alias gbch="gbump && echo 'Starting to watch PR checks in 10s' && sleep 10 && ghch"
 alias gbump="git commit -m 'Bump' --allow-empty && git push"
 alias ghch="gh pr checks --watch"

@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+WITH_EXTRA=false
+
+for arg in "$@"; do
+  case $arg in
+    --with-extra)
+      WITH_EXTRA=true
+      ;;
+  esac
+done
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR/.."
 
@@ -19,14 +29,22 @@ darwin*)
   brew tap | grep --fixed-strings --ignore-case --quiet "^FelixKratz/formulae\$" || brew tap FelixKratz/formulae
 
   brew install \
-    zsh git tmux wget ripgrep fzf fd bat git-delta eza zoxide btop jq yq \
-    gh xh viddy shellcheck scc tlrc k6 daveshanley/vacuum/vacuum sqlfluff fastfetch git-standup \
+    zsh git tmux wget ripgrep fzf fd bat git-delta btop jq yq \
+    gh xh shellcheck tlrc \
     rbenv nodenv temurin@21 mise \
     borders
 
   for cask in kitty nikitabobko/tap/aerospace; do
     brew list --cask "$cask" &>/dev/null || brew install --cask "$cask"
   done
+
+  if [ "$WITH_EXTRA" = true ]; then
+    brew install eza zoxide \
+      viddy scc k6 daveshanley/vacuum/vacuum sqlfluff fastfetch git-standup
+
+    command -v rustc >/dev/null 2>&1 || curl https://sh.rustup.rs -sSf | sh -s -- -y
+    mise use -g cargo:dedoc
+  fi
   ;;
 esac
 
