@@ -1,0 +1,297 @@
+" LazyVim key mappings for Jetbrains IDEs.
+
+" LazyVim default settings
+" https://www.lazyvim.org/configuration/general
+
+let mapleader=" "
+let maplocalleader="\\"
+
+" Confirm to save changes before exiting modified buffer
+set formatoptions=jcroqlnt
+" Print line number
+set number
+" Relative line numbers
+set relativenumber
+" Lines of context
+set scrolloff=4
+" Round indent
+set shiftround
+" Columns of context
+set sidescrolloff=8
+" which-key says to set this high (5000 or 10000), or set notimeout
+set timeoutlen=5000
+set notimeout
+set undolevels=10000
+" Disable line wrap
+set nowrap
+" Switch to english in normal mode
+set keep-english-in-normal-and-restore-in-insert
+
+" Neovim settings that differ from Vim
+" https://neovim.io/doc/user/diff.html
+" https://github.com/mikeslattery/nvim-defaults.vim/blob/main/plugin/.vimrc
+
+set backspace=indent,eol,start
+set formatoptions=tcqj
+set listchars=tab:>\ ,trail:-,nbsp:+
+set shortmess=filnxtToOF
+
+" Enable plugin behavior
+
+" https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+" https://www.lazyvim.org/plugins
+
+" gcc and gc<action> mappings.
+Plug 'tpope/vim-commentary'
+" s action, such as cs"' (replace " with '), ds" (unquote)
+Plug 'tpope/vim-surround'
+" Enable the whichkey plugin, available on Jetbrains marketplace
+set which-key
+" Extended matching.  A Neovim default plugin.
+set matchit
+
+" Neovim mappings
+" https://neovim.io/doc/user/vim_diff.html#_default-mappings
+
+nnoremap Y y$
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+" Q isn't exactly the same.
+nnoremap Q @@
+" There are several more Neovim mappings that need to be ported.
+
+" WhichKey config
+let g:WhichKey_ShowVimActions = "false"
+
+" Custom mappings
+
+inoremap jj <Esc>
+
+" ── Group descriptions ──────────────────────────────
+let g:WhichKeyDesc_buffer     = "<leader>b +buffer"
+let g:WhichKeyDesc_code       = "<leader>c +code"
+let g:WhichKeyDesc_debug      = "<leader>d +debug"
+let g:WhichKeyDesc_file       = "<leader>f +file/find"
+let g:WhichKeyDesc_git        = "<leader>g +git"
+let g:WhichKeyDesc_quit       = "<leader>q +quit/session"
+let g:WhichKeyDesc_search     = "<leader>s +search"
+let g:WhichKeyDesc_test       = "<leader>t +test"
+let g:WhichKeyDesc_ui         = "<leader>u +ui"
+let g:WhichKeyDesc_windows    = "<leader>w +windows"
+let g:WhichKeyDesc_diagnostics = "<leader>x +diagnostics"
+let g:WhichKeyDesc_fold = "<leader>z +fold"
+let g:WhichKeyDesc_goto = "g +goto"
+let g:WhichKeyDesc_next = "] +next"
+let g:WhichKeyDesc_prev = "[ +prev"
+
+" ── File/Find ───────────────────────────────────────
+let g:WhichKeyDesc_go_to_file = "<leader><space> Go to File..."
+nmap <leader><space> :action GotoFile<cr>
+
+let g:WhichKeyDesc_find_files = "<leader>ff Find Files"
+nmap <leader>ff :action GotoFile<cr>
+
+let g:WhichKeyDesc_recent_files = "<leader>fr Recent Files"
+nmap <leader>fr :action RecentFiles<cr>
+
+let g:WhichKeyDesc_new_file = "<leader>fn New File"
+nmap <leader>fn :action NewElementSamePlace<cr>
+
+let g:WhichKeyDesc_buffers = "<leader>fb Buffers"
+nmap <leader>fb :action Switcher<cr>
+
+let g:WhichKeyDesc_buffers_alt = "<leader>, Buffers"
+nmap <leader>, :action Switcher<cr>
+
+let g:WhichKeyDesc_terminal = "<leader>ft Terminal"
+nmap <leader>ft :action ActivateTerminalToolWindow<cr>
+
+let g:WhichKeyDesc_explorer = "<leader>fe Explorer"
+nmap <leader>fe :action ActivateProjectToolWindow<cr>
+
+" ── Buffer ──────────────────────────────────────────
+let g:WhichKeyDesc_delete_buffer = "<leader>bd Delete Buffer"
+nmap <leader>bd :action CloseContent<cr>
+
+let g:WhichKeyDesc_delete_other_buffers = "<leader>bo Delete Other Buffers"
+nmap <leader>bo :action CloseAllEditorsButActive<cr>
+
+let g:WhichKeyDesc_toggle_pin = "<leader>bp Toggle Pin"
+nmap <leader>bp :action PinActiveTabToggle<cr>
+
+let g:WhichKeyDesc_delete_buffers_to_the_left = "<leader>bl Delete Buffers to the Left"
+nmap <leader>bl :action CloseAllToTheLeft<cr>
+
+let g:WhichKeyDesc_delete_buffers_to_the_right = "<leader>br Delete Buffers to the Right"
+nmap <leader>br :action CloseAllToTheRight<cr>
+
+" ── Code ────────────────────────────────────────────
+let g:WhichKeyDesc_code_actions = "<leader>ca Code Actions"
+nmap <leader>ca :action RefactoringMenu<cr>
+
+let g:WhichKeyDesc_reformat_code = "<leader>cf Format"
+nmap <leader>cf :action ReformatCode<cr>
+
+let g:WhichKeyDesc_rename = "<leader>cr Rename"
+nmap <leader>cr :action RenameElement<cr>
+
+let g:WhichKeyDesc_rename_file = "<leader>cR Rename File"
+nmap <leader>cR :action RenameFile<cr>
+
+let g:WhichKeyDesc_code_diagnostics = "<leader>cd Code Diagnostics"
+nmap <leader>cd :action ActivateProblemsViewToolWindow<cr>
+
+" ── Debug ───────────────────────────────────────────
+let g:WhichKeyDesc_toggle_breakpoint = "<leader>db Toggle Breakpoint"
+nmap <leader>db :action ToggleLineBreakpoint<cr>
+
+let g:WhichKeyDesc_resume = "<leader>dc Continue"
+nmap <leader>dc :action Resume<cr>
+
+let g:WhichKeyDesc_step_into = "<leader>di Step Into"
+nmap <leader>di :action StepInto<cr>
+
+let g:WhichKeyDesc_step_out = "<leader>do Step Out"
+nmap <leader>do :action StepOut<cr>
+
+let g:WhichKeyDesc_step_over = "<leader>dO Step Over"
+nmap <leader>dO :action StepOver<cr>
+
+let g:WhichKeyDesc_stop = "<leader>dt Terminate"
+nmap <leader>dt :action Stop<cr>
+
+" ── Git ─────────────────────────────────────────────
+let g:WhichKeyDesc_commit = "<leader>gc Commit..."
+nmap <leader>gc :action ActivateCommitToolWindow<cr>
+
+let g:WhichKeyDesc_annotate = "<leader>ga Git Annotate"
+nmap <leader>ga :action Annotate<cr>
+
+let g:WhichKeyDesc_branches = "<leader>gb Git Branches"
+nmap <leader>gb :action Git.Branches<cr>
+
+let g:WhichKeyDesc_log = "<leader>gl Git Log"
+nmap <leader>gl :action Vcs.Show.Log<cr>
+
+let g:WhichKeyDesc_pull = "<leader>gp Git Pull"
+nmap <leader>gp :action Vcs.UpdateProject<cr>
+
+let g:WhichKeyDesc_push = "<leader>gP Git Push"
+nmap <leader>gP :action Vcs.Push<cr>
+
+" ── Search ──────────────────────────────────────────
+let g:WhichKeyDesc_find_in_files = "<leader>sg Find in Files"
+nmap <leader>sg :action FindInPath<cr>
+
+let g:WhichKeyDesc_find_symbols = "<leader>ss Find Symbols"
+nmap <leader>ss :action GotoSymbol<cr>
+
+let g:WhichKeyDesc_help_pages = "<leader>sh Help Pages"
+nmap <leader>sh :action HelpTopics<cr>
+
+let g:WhichKeyDesc_keymaps = "<leader>sk Keymaps"
+nmap <leader>sk :map<cr>
+
+let g:WhichKeyDesc_marks = "<leader>sm Marks"
+nmap <leader>sm :marks<cr>
+
+" ── Quit ────────────────────────────────────────────
+nmap <leader>qq :action Exit<cr>
+
+" ── UI ──────────────────────────────────────────────
+nmap <leader>uw :setlocal wrap!<cr>
+nmap <leader>ul :set number!<cr>
+nmap <leader>uL :set relativenumber!<cr>
+nmap <leader>uc :action QuickChangeScheme<cr>
+
+let g:WhichKeyDesc_reload_ideavimrc = "<leader>uS Reload .ideavimrc"
+nmap <leader>uS :source ~/.ideavimrc<cr>
+
+let g:WhichKeyDesc_settings = "<leader>us Settings"
+nmap <leader>us :action ShowSettings<cr>
+
+"nmap <leader>us :action IdeaVim.ReloadVimRc.reload<cr>
+
+" ── Windows ─────────────────────────────────────────
+let g:WhichKeyDesc_close_window = "<leader>wd Close Window"
+nmap <leader>wd :action CloseContent<cr>
+
+"nmap <leader>wm :action ToggleDistractionFreeMode<cr>
+
+let g:WhichKeyDesc_split_down = "<leader>- Split Down"
+nmap <leader>- <c-w>s
+
+let g:WhichKeyDesc_split_right = "<leader>| Split Right"
+nmap <leader>| <c-w>v
+
+" ── Goto ────────────────────────────────────────────
+let g:WhichKeyDesc_goto_definition = "gd Goto Definition"
+nmap gd :action GotoDeclaration<cr>
+
+let g:WhichKeyDesc_goto_declaration = "gD Goto Declaration"
+nmap gD :action GotoDeclaration<cr>
+
+let g:WhichKeyDesc_goto_implementation = "gI Goto Implementation"
+nmap gI :action GotoImplementation<cr>
+
+let g:WhichKeyDesc_signature_help = "gK Signature Help"
+nmap gK :action ParameterInfo<cr>
+
+let g:WhichKeyDesc_signature_help_alt = "<C-k> Signature Help"
+imap <C-k> <Action>(ParameterInfo)
+
+let g:WhichKeyDesc_goto_type_definition = "gy Goto T[y]pe Definition"
+nmap gy :action GotoTypeDeclaration<cr>
+
+let g:WhichKeyDesc_goto_references = "gr References"
+nmap gr :action FindUsages<cr>
+
+let g:WhichKeyDesc_goto_top = "k Goto first line"
+let g:WhichKeyDesc_goto_bottom = "G Goto last line"
+
+" ── Next ────────────────────────────────────────────
+let g:WhichKeyDesc_next_method = "]m Next Method"
+nmap ]m :action MethodDown<cr>
+
+let g:WhichKeyDesc_reference_next = "]] Next Reference"
+nmap ]] <Action>(GotoNextElementUnderCaretUsage)
+
+let g:WhichKeyDesc_reference_next_alt = "<A-n> Next Reference"
+nmap <a-n> <Action>(GotoNextElementUnderCaretUsage)
+
+" ── Prev ────────────────────────────────────────────
+let g:WhichKeyDesc_prev_method = "[m Previous Method"
+nmap [m :action MethodUp<cr>
+
+let g:WhichKeyDesc_reference_prev = "[[ Prev Reference"
+nmap [[ <Action>(GotoPrevElementUnderCaretUsage)
+
+let g:WhichKeyDesc_reference_prev_alt = "<A-p> Prev Reference"
+nmap <a-p> <Action>(GotoPrevElementUnderCaretUsage)
+
+" ── Fold ────────────────────────────────────────────
+let g:WhichKeyDesc_close_all_folds = "zM Close All Folds"
+nmap zM :action CollapseAllRegions<cr>
+
+let g:WhichKeyDesc_open_all_folds = "zR Open All Folds"
+nmap zR :action ExpandAllRegions<cr>
+
+let g:WhichKeyDesc_close_fold = "zc Close Fold"
+nmap zc :action CollapseRegion<cr>
+
+let g:WhichKeyDesc_open_fold = "zo Open Fold"
+nmap zo :action ExpandRegion<cr>
+
+let g:WhichKeyDesc_close_all_folds_under_cursor = "zC Close All Folds under Cursor"
+nmap zC :action CollapseRegionRecursively<cr>
+
+let g:WhichKeyDesc_open_all_folds_under_cursor = "zO Open All Folds under Cursor"
+nmap zO :action ExpandRegionRecursively<cr>
+
+let g:WhichKeyDesc_toggle_fold = "za Toggle Fold"
+nmap za :action ExpandCollapseToggleAction<cr>
+
+
+
+
+
