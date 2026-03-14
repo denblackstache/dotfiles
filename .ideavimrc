@@ -66,6 +66,7 @@ let g:WhichKey_ShowVimActions = "false"
 " Custom mappings
 
 inoremap jj <Esc>
+nnoremap U <C-r>
 
 " ── Group descriptions ──────────────────────────────
 let g:WhichKeyDesc_buffer     = "<leader>b +buffer"
