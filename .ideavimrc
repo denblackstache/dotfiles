@@ -69,7 +69,7 @@ let g:WhichKeyDesc_file       = "<leader>f +file/find"
 let g:WhichKeyDesc_git        = "<leader>g +git"
 let g:WhichKeyDesc_quit       = "<leader>q +quit/session"
 let g:WhichKeyDesc_search     = "<leader>s +search"
-let g:WhichKeyDesc_refactor   = "<leader>r +refactor"
+let g:WhichKeyDesc_refactor     = "<leader>r +refactor"
 let g:WhichKeyDesc_test       = "<leader>t +test"
 let g:WhichKeyDesc_ui         = "<leader>u +ui"
 let g:WhichKeyDesc_windows    = "<leader>w +windows"
@@ -83,9 +83,6 @@ let g:WhichKeyDesc_prev = "[ +prev"
 
 let g:WhichKeyDesc_quick_documentation = "<leader>K Quick Documentation"
 nmap <leader>K :action QuickJavaDoc<cr>
-
-" let g:WhichKeyDesc_jump_to_last_tool_window = "<leader>` Jump to Last Tool Window"
-" nmap <leader>` :action JumpToLastWindow<cr>
 
 let g:WhichKeyDesc_buffers_alt = "<leader>, Buffers"
 nmap <leader>, :action Switcher<cr>
@@ -307,7 +304,7 @@ let g:WhichKeyDesc_next_edit_location = "]l Next Edit Location"
 nmap ]l :action JumpToNextChange<cr>
 
 let g:WhichKeyDesc_last_edit_location = "]L Last Edit Location"
-nmap ]L:action JumpToLastChange<cr>
+nmap ]L :action JumpToLastChange<cr>
 
 " ── Prev ────────────────────────────────────────────
 let g:WhichKeyDesc_prev_method = "[m Previous Method"
